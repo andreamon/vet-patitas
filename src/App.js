@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { Row, Col, Container } from "react-bootstrap";
-import Header from './components/Header';
+import { Container } from "react-bootstrap";
+import Header from "./components/Header";
 import PetsList from "./components/PetsList";
 import AddPetForm from "./components/AddPetForm";
 import EditPetForm from "./components/EditPetForm";
@@ -31,7 +32,7 @@ const App = () => {
     },
   ];
 
-  const [pets, setPets] = useState(petsInitial);
+  const [pets, setPets] = useState([]);
   const [editing, setEditing] = useState(false);
   const [currentPet, setCurrentPet] = useState({
     id: null,
@@ -70,53 +71,29 @@ const App = () => {
   };
 
   return (
-    <>
-      <Header />
-      <Container>
-        <Row className="justify-content-center p-3">
-          <h2>
-            <strong>Patitas Suaves</strong>
-          </h2>
-        </Row>
-        <Row className="justify-content-center">
-          <Col md={6}>
-            {editing ? (
-              <div>
-                <h2>
-                  <strong>Modificar datos</strong>
-                </h2>
+      <Router>
+        <Header />
+        <Container style={{ marginTop: "2rem" }}>
+          <Switch>
+            <Route path="/" exact>
+              <PetsList
+                pets={pets}
+                deletePetHandler={deletePetHandler}
+                editPet={editPet}
+              />
+            </Route>
+              <Route path="/editPet">
                 <EditPetForm
                   currentPet={currentPet}
                   confirmChangeHandler={confirmChangeHandler}
-                  setEditing={setEditing}
                 />
-              </div>
-            ) : (
-              <div>
-                <h2>
-                  <strong>Nuevo paciente</strong>
-                </h2>
+              </Route>
+              <Route path="/addPet">
                 <AddPetForm addPetHandler={addPetHandler} />
-              </div>
-            )}
-          </Col>
-        </Row>
-        <Row className="justify-content-center p-3">
-          <h4>
-            <strong>Listado de mascotas</strong>
-          </h4>
-        </Row>
-        <Row className="justify-content-center">
-          <Col md={10}>
-            <PetsList
-              pets={pets}
-              deletePetHandler={deletePetHandler}
-              editPet={editPet}
-            />
-          </Col>
-        </Row>
-      </Container>
-    </>
+              </Route>
+          </Switch>
+        </Container>
+      </Router>
   );
 };
 

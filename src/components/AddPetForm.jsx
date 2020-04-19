@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,Row,Col } from "react-bootstrap";
 
 const AddPetForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
@@ -11,6 +11,10 @@ const AddPetForm = (props) => {
   };
 
   return (
+    <>
+    <Row className="justify-content-center">
+    <Col md={6}>
+    <h3><strong>Nuevo paciente</strong></h3>
     <Form onSubmit={handleSubmit(savePet)} className="mb-4">
       <Form.Group controlId="inputName">
         <Form.Label>Nombre</Form.Label>
@@ -106,6 +110,9 @@ const AddPetForm = (props) => {
         Agregar mascota
       </Button>
     </Form>
+    </Col>
+    </Row>
+    </>
   );
 };
 

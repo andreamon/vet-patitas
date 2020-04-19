@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const EditPetForm = (props) => {
   const { register, errors, handleSubmit, setValue } = useForm({
@@ -19,6 +20,9 @@ const EditPetForm = (props) => {
   };
 
   return (
+    <Row className="justify-content-center">
+    <Col md={6}>
+    <h3><strong>Modificar datos</strong></h3>
     <Form onSubmit={handleSubmit(onSubmit)} className="mb-4">
       <Form.Group controlId="inputName">
         <Form.Label>Nombre</Form.Label>
@@ -32,7 +36,6 @@ const EditPetForm = (props) => {
             },
           })}
         />
-
         <Form.Text className="text-danger mb-3">
           <strong>{errors?.name?.message}</strong>
         </Form.Text>
@@ -49,7 +52,6 @@ const EditPetForm = (props) => {
             },
           })}
         />
-
         {errors.age && (
           <Form.Text className="text-danger mb-3">
             <strong>{errors.age.message}</strong>
@@ -76,7 +78,6 @@ const EditPetForm = (props) => {
           <option label="Ave" value="Ave" />
           <option label="Otro" value="Otro" />
         </Form.Control>
-
         {errors.type && (
           <Form.Text className="text-danger mb-3">
             <strong>{errors.type.message}</strong>
@@ -85,8 +86,10 @@ const EditPetForm = (props) => {
       </Form.Group>
 
       <Button variant="success" type="submit" className="m-1">Confirmar cambios</Button>
-      <Button variant="danger" onClick={()=>{props.setEditing(false)}} className="m-1">Cancelar edición</Button>
+      <Link to="/" className="btn btn-danger">Cancelar edición</Link>
     </Form>
+    </Col>
+    </Row>
   );
 };
 

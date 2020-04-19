@@ -1,8 +1,13 @@
 import React from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const PetsList = (props) => {
   return (
+    <>
+    <Row className="justify-content-center">
+    <Col md={10}>
+    <h3><strong>Listado de mascotas</strong></h3>
     <Table striped bordered hover responsive>
       <thead>
         <tr>
@@ -22,10 +27,8 @@ const PetsList = (props) => {
               <td>{pet.type}</td>
               <td>{pet.vaccine}</td>
               <td>
-                <Button variant="success" size="sm" className="m-1" onClick={()=>{props.editPet(pet)}}>
-                  Editar
-                </Button>
-                <Button variant="danger" size="sm" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}}>
+                <Link to="/editPet" className="btn btn-success" style={{margin:'4px'}}>Editar</Link>
+                <Button variant="danger" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}}>
                   Eliminar
                 </Button>
               </td>
@@ -38,6 +41,9 @@ const PetsList = (props) => {
         )}
       </tbody>
     </Table>
+    </Col>
+    </Row>
+    </>
   );
 };
 
