@@ -1,14 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button,Row,Col } from "react-bootstrap";
+import { Link, useHistory } from 'react-router-dom';
 
 const AddPetForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
+  const history = useHistory();
 
   const savePet = (data, e) => {
     props.addPetHandler(data);
     e.target.reset();
-  };
+    history.push('/');  };
 
   return (
     <>
@@ -83,32 +85,10 @@ const AddPetForm = (props) => {
         )}
       </Form.Group>
 
-      {/* <Form.Check as={Row} type="switch" id="custom-switch" label="Check this switch" /> */}
-      {/* <fieldset>
-        <Form.Group as={Row}>
-          <Form.Label as="legend" column sm={10}>
-            Tiene todas sus vacunas?
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="Sí"
-              name="yes"
-              id="yes"
-            />
-            <Form.Check
-              type="radio"
-              label="No"
-              name="not"
-              id="not"
-            />
-          </Col>
-        </Form.Group>
-      </fieldset> */}
-
-      <Button variant="success" type="submit">
+      <Button variant="success" type="submit" className="m-1">
         Agregar mascota
       </Button>
+      <Link to="/" className="btn btn-danger">Cancelar</Link>
     </Form>
     </Col>
     </Row>

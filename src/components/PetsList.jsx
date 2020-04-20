@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Button, Col, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
 
 const PetsList = (props) => {
@@ -7,8 +8,13 @@ const PetsList = (props) => {
     <>
     <Row className="justify-content-center">
     <Col md={10}>
-    <h3><strong>Listado de mascotas</strong></h3>
-    <Table striped bordered hover responsive>
+    <h3 className="p-3" style={{ backgroundColor: '#176FA6', color:'white' }}>
+      Registro de mascotas 
+      {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Nuevo">
+        <FontAwesomeIcon icon="plus-circle" style={{ color: 'white' }}/>
+      </Link> */}
+    </h3>
+    <Table striped hover responsive="sm" size="sm">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -27,9 +33,11 @@ const PetsList = (props) => {
               <td>{pet.type}</td>
               <td>{pet.vaccine}</td>
               <td>
-                <Link to="/editPet" className="btn btn-success" style={{margin:'4px'}}>Editar</Link>
-                <Button variant="danger" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}}>
-                  Eliminar
+                <Link to={`/editPet/${pet.id}`} className="btn btn-link" style={{margin:'4px'}} data-toggle="tooltip" title="Editar">
+                  <FontAwesomeIcon icon="pencil-alt" style={{ color: 'blue' }}/>
+                </Link>
+                <Button variant="link" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}} data-toggle="tooltip" title="Eliminar">
+                  <FontAwesomeIcon icon="trash-alt" style={{ color: 'red' }}/>
                 </Button>
               </td>
             </tr>

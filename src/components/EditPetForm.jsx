@@ -1,28 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 const EditPetForm = (props) => {
-  const { register, errors, handleSubmit, setValue } = useForm({
-    defaultValues: props.currentPet,
-  });
+    const {id} = useParams();
+    const history = useHistory();
+    const petFind = props.sendPetId(id);
+    console.log(petFind);
 
-  setValue("id", props.currentPet.id);
-  setValue("name", props.currentPet.name);
-  setValue("age", props.currentPet.age);
-  setValue("type", props.currentPet.type);
+  const { register, errors, handleSubmit, setValue } = useForm({defaultValues: petFind});
+
+  setValue("id", petFind.id);
+  setValue("name", petFind.name);
+  setValue("age", petFind.age);
+  setValue("type", petFind.type);
 
   const onSubmit = (data, e) => {
-    data.id = props.currentPet.id;
-    props.confirmChangeHandler(props.currentPet.id, data);
+    let id = petFind.id;
+    props.confirmChangeHandler(id, data);
     e.target.reset();
+    history.push('/');
   };
 
   return (
     <Row className="justify-content-center">
     <Col md={6}>
-    <h3><strong>Modificar datos</strong></h3>
+    <h3><strong>Modificar datos de {petFind.name}</strong></h3>
     <Form onSubmit={handleSubmit(onSubmit)} className="mb-4">
       <Form.Group controlId="inputName">
         <Form.Label>Nombre</Form.Label>
