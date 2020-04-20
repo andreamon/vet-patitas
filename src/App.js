@@ -15,9 +15,9 @@ library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle);
 
 const App = () => {
   const petsInitial = [
-    {id: uuidv4(),name: "Nina",age: "6 años",type: "Felino",vaccine: "Sí"},
-    {id: uuidv4(),name: "Negrunildo",age: "2 años",type: "Canino",vaccine: "No"},
-    {id: uuidv4(),name: "Michitina",age: "4 años",type: "Felino",vaccine: "Sí"}];
+    {id: uuidv4(),name: "Nina",age: "6 años",type: "Felino"},
+    {id: uuidv4(),name: "Negrunildo",age: "2 años",type: "Canino"},
+    {id: uuidv4(),name: "Michitina",age: "4 años",type: "Felino"}];
 
   const [pets, setPets] = useState(petsInitial);
 
@@ -31,7 +31,7 @@ const App = () => {
     setPets(filterPet);
   };
 
-  //Prueba para enviar una mascota segun id
+  //Funcion para encontrar una mascota segun id
   const sendPetId = (id) => {
     const editPetAuto = pets.find((pet) => pet.id === id);
     return editPetAuto;
@@ -55,10 +55,6 @@ const App = () => {
               />
             </Route>
             <Route path="/editPet/:id" exact>
-              {/* <EditPetForm
-                currentPet={currentPet}
-                confirmChangeHandler={confirmChangeHandler}
-              /> */}
               <EditPetForm
                 sendPetId={sendPetId}
                 confirmChangeHandler={confirmChangeHandler}

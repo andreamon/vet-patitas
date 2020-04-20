@@ -4,10 +4,9 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 const EditPetForm = (props) => {
-    const {id} = useParams();
-    const history = useHistory();
-    const petFind = props.sendPetId(id);
-    console.log(petFind);
+  const {id} = useParams();
+  const history = useHistory();
+  const petFind = props.sendPetId(id);
 
   const { register, errors, handleSubmit, setValue } = useForm({defaultValues: petFind});
 

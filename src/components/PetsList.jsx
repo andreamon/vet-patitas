@@ -8,7 +8,7 @@ const PetsList = (props) => {
     <>
     <Row className="justify-content-center">
     <Col md={10}>
-    <h3 className="p-3" style={{ backgroundColor: '#176FA6', color:'white' }}>
+    <h3 className="p-3" style={{ backgroundColor: '#262626', color:'white' }}>
       Registro de mascotas 
       {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Nuevo">
         <FontAwesomeIcon icon="plus-circle" style={{ color: 'white' }}/>
@@ -20,7 +20,6 @@ const PetsList = (props) => {
           <th>Nombre</th>
           <th>Edad</th>
           <th>Especie / Tipo</th>
-          <th>Vacunas al día</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -31,7 +30,6 @@ const PetsList = (props) => {
               <td>{pet.name}</td>
               <td>{pet.age}</td>
               <td>{pet.type}</td>
-              <td>{pet.vaccine}</td>
               <td>
                 <Link to={`/editPet/${pet.id}`} className="btn btn-link" style={{margin:'4px'}} data-toggle="tooltip" title="Editar">
                   <FontAwesomeIcon icon="pencil-alt" style={{ color: 'blue' }}/>
@@ -44,7 +42,7 @@ const PetsList = (props) => {
           ))
         ) : (
           <tr>
-            <td colSpan={5}>Aún no hay mascotas registradas</td>
+            <td colSpan={4}>Aún no hay mascotas registradas</td>
           </tr>
         )}
       </tbody>

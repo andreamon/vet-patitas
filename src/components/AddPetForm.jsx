@@ -32,7 +32,6 @@ const AddPetForm = (props) => {
             },
           })}
         />
-
         <Form.Text className="text-danger mb-3">
           <strong>{errors?.name?.message}</strong>
         </Form.Text>
@@ -50,12 +49,9 @@ const AddPetForm = (props) => {
             },
           })}
         />
-
-        {errors.age && (
-          <Form.Text className="text-danger mb-3">
-            <strong>{errors.age.message}</strong>
-          </Form.Text>
-        )}
+        <Form.Text className="text-danger mb-3">
+          <strong>{errors?.age?.message}</strong>
+        </Form.Text>
       </Form.Group>
       <Form.Group controlId="inputType">
         <Form.Label>Especie animal</Form.Label>
@@ -77,14 +73,10 @@ const AddPetForm = (props) => {
           <option label="Ave" value="Ave" />
           <option label="Otro" value="Otro" />
         </Form.Control>
-
-        {errors.type && (
-          <Form.Text className="text-danger mb-3">
-            <strong>{errors.type.message}</strong>
-          </Form.Text>
-        )}
+        <Form.Text className="text-danger mb-3">
+          <strong>{errors?.type?.message}</strong>
+        </Form.Text>
       </Form.Group>
-
       <Button variant="success" type="submit" className="m-1">
         Agregar mascota
       </Button>
