@@ -15,7 +15,7 @@ const AddPetForm = (props) => {
   return (
     <>
     <Row className="justify-content-center">
-    <Col md={6}>
+    <Col md={5}>
     <h3><strong>Nuevo paciente</strong></h3>
     <Form onSubmit={handleSubmit(savePet)} className="mb-4">
       <Form.Group controlId="inputName">
@@ -77,10 +77,12 @@ const AddPetForm = (props) => {
           <strong>{errors?.type?.message}</strong>
         </Form.Text>
       </Form.Group>
-      <Button variant="success" type="submit" className="m-1">
-        Agregar mascota
-      </Button>
-      <Link to="/" className="btn btn-danger">Cancelar</Link>
+      <div className="text-right pt-3">
+        <Link to="/" className="btn btn-danger mr-1">Cancelar</Link>
+        <Button variant="success" type="submit">
+          Agregar
+        </Button>
+      </div>
     </Form>
     </Col>
     </Row>

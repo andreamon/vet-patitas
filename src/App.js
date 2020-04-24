@@ -31,14 +31,12 @@ const App = () => {
     setPets(filterPet);
   };
 
-  //Funcion para encontrar una mascota segun id
-  const sendPetId = (id) => {
+  const sendPetId = (id) => { //Funcion para encontrar una mascota segun id
     const editPetAuto = pets.find((pet) => pet.id === id);
     return editPetAuto;
   };
 
-  const confirmChangeHandler = (id, Updatepet) => {
-    //Confirmar cambios
+  const confirmChangeHandler = (id, Updatepet) => { //Confirmar cambios
     const newPet = {id: id, ...Updatepet}
     setPets(pets.map((pet) => (pet.id === id ? newPet : pet)));
   };

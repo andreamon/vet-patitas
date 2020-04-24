@@ -8,13 +8,13 @@ const PetsList = (props) => {
     <>
     <Row className="justify-content-center">
     <Col md={10}>
-    <h3 className="p-3" style={{ backgroundColor: '#262626', color:'white' }}>
-      Registro de mascotas 
-      {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Nuevo">
-        <FontAwesomeIcon icon="plus-circle" style={{ color: 'white' }}/>
+    <div className="py-3">
+      <h3><strong>REGISTRO DE MASCOTAS</strong></h3><hr />
+      {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Agregar mascota">
+        <FontAwesomeIcon icon="plus-square" style={{ color: 'white' }} size="lg"/>
       </Link> */}
-    </h3>
-    <Table striped hover responsive="sm" size="sm">
+    </div>
+    <Table striped hover responsive="sm" size="sm" >
       <thead>
         <tr>
           <th>Nombre</th>
@@ -32,10 +32,10 @@ const PetsList = (props) => {
               <td>{pet.type}</td>
               <td>
                 <Link to={`/editPet/${pet.id}`} className="btn btn-link" style={{margin:'4px'}} data-toggle="tooltip" title="Editar">
-                  <FontAwesomeIcon icon="pencil-alt" style={{ color: 'blue' }}/>
+                  <FontAwesomeIcon icon="pencil-alt" style={{ color: '#1982FF' }}/>
                 </Link>
                 <Button variant="link" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}} data-toggle="tooltip" title="Eliminar">
-                  <FontAwesomeIcon icon="trash-alt" style={{ color: 'red' }}/>
+                  <FontAwesomeIcon icon="trash-alt" style={{ color: '#EB0A02' }}/>
                 </Button>
               </td>
             </tr>
