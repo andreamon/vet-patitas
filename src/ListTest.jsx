@@ -3,8 +3,9 @@ import axios from "axios";
 // import { useSelector, useDispatch } from "react-redux";
 // import { getPetAction } from "./redux/index";
 import { Container, Row, Button, Table, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { v4 as uuidv4 } from "uuid";
+import Swal from "sweetalert2";
 
 const PetsList = () => {
   // const dispatch = useDispatch();
@@ -29,8 +30,21 @@ const PetsList = () => {
     getAll();
   }, []);
 
-  const view = () => {
-    console.log(pets);
+  const deletePet = () => {
+    Swal.fire({
+      title: "Seguro desea eliminar este paciente?",
+      text: "Esta acción no podrá deshacerse",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire("Eliminado", "El paciente ha sido eliminado.", "success");
+      }
+    });
   };
   return (
     <>
@@ -60,12 +74,14 @@ const PetsList = () => {
                       <td>{pet.age}</td>
                       <td>{pet.type}</td>
                       <td>
-                        
                         <Button
                           variant="link"
                           className="m-1"
                           data-toggle="tooltip"
                           title="Eliminar"
+                          onClick={() => {
+                            deletePet();
+                          }}
                         >
                           <FontAwesomeIcon
                             icon="trash-alt"

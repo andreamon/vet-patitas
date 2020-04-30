@@ -1,16 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./AppContainer";
+import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
-// import {petApp} from "./reducers/index";
-// import { createStore } from "redux";
+import { FirebaseAppProvider } from "reactfire";
+import FirebaseConfig from './firebase';
 
-//Crear el store , pasandole como parámetro el reducer
-// const store = createStore(petApp);
-
-ReactDOM.render(
-                <App />
-            , document.getElementById("root"));
+ReactDOM.render((
+                <FirebaseAppProvider FirebaseConfig={FirebaseConfig}>
+                    <App />
+                </FirebaseAppProvider>
+                ), document.getElementById("root"));
