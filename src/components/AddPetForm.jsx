@@ -4,16 +4,15 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 const AddPetForm = (props) => {
-  // const fileRef = useRef(null);
   const { register, errors, handleSubmit } = useForm();
   const history = useHistory();
 
   const savePet = (data, e) => {
     console.log(data.file[0].name)
     console.log(data);
-    props.addPetHandler(data);
+    /* props.addPetHandler(data);
     e.target.reset();
-    history.push("/");
+    history.push("/"); */
   };
 
   return (

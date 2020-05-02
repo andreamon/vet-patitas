@@ -1,12 +1,22 @@
-import React from "react";
-import { Table, Button, Col, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Table, Button, Col, Row, Modal, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 const PetsList = (props) => {
+  const [show, setShow] = useState(false);
+  const [petSelected, setPetSelected] = useState({});
+
+  const handleClose = () => setShow(false);
+
+  const handleShowImage = (pet) => {
+    setShow(true);
+    setPetSelected(pet);
+  };
+
   return (
     <Row className="justify-content-center">
-      <Col md={10}>
+      <Col md={8}>
         <div className="py-3">
           <h3>
             <strong>REGISTRO DE MASCOTAS</strong>
@@ -16,7 +26,14 @@ const PetsList = (props) => {
           <FontAwesomeIcon icon="plus-square" style={{ color: 'white' }} size="lg"/>
           </Link> */}
         </div>
-        <Table striped hover responsive="sm" >
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+          <Modal.Title>Foto de {petSelected.name}</Modal.Title></Modal.Header>
+          <Modal.Body className="text-center">
+            <Image src={petSelected.photo} width="400px" rounded />
+          </Modal.Body>
+        </Modal>
+        <Table striped hover responsive="sm" size="sm">
           <thead className="text-center">
             <tr>
               <th>Nombre</th>
@@ -24,7 +41,7 @@ const PetsList = (props) => {
               <th>Especie / Tipo</th>
               <th>Imagen</th>
               <th>Acciones</th>
-              <th></th>
+              <th>#</th>
             </tr>
           </thead>
           <tbody className="text-center">
@@ -34,12 +51,19 @@ const PetsList = (props) => {
                   <td>{pet.name}</td>
                   <td>{pet.age}</td>
                   <td>{pet.type}</td>
-                  <td>{pet.photo}</td>
                   <td>
-                    <Link
+                    <Button variant="link" onClick={() => handleShowImage(pet)} data-toggle="tooltip" title="Ver foto">
+                      <FontAwesomeIcon
+                        icon="camera-retro"
+                        style={{ color: "#1982FF" }}
+                      />
+                    </Button>
+                  </td>
+                  <td>
+                  <Link
                       to={`/editPet/${pet.id}`}
                       className="btn btn-link"
-                      style={{ margin: "4px" }}
+                      
                       data-toggle="tooltip"
                       title="Editar"
                     >
@@ -50,7 +74,7 @@ const PetsList = (props) => {
                     </Link>
                     <Button
                       variant="link"
-                      className="m-1"
+                      
                       onClick={() => {
                         props.deletePetHandler(pet.id);
                       }}
@@ -63,8 +87,8 @@ const PetsList = (props) => {
                       />
                     </Button>
                   </td>
-                  <td style={{ padding: "4px" }}>
-                    <Link to={`/detail/${pet.id}`} className="btn btn-link">
+                  <td style={{ padding: "4px" }} className="text-right">
+                    <Link to={`/detail/${pet.id}`} className="btn btn-link align-right">
                       Ver detalles
                     </Link>
                   </td>

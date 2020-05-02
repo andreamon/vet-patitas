@@ -1,5 +1,4 @@
-import firebase from "firebase/app";
-import database from "firebase/database";
+import firebase from "firebase";
 
 const config = {
   apiKey: "AIzaSyBO9j3QuLRxR7fD8NFZpQWKUxdEgb2v8fY",
@@ -8,17 +7,9 @@ const config = {
   projectId: "patitas-suaves-vet",
   storageBucket: "patitas-suaves-vet.appspot.com",
   messagingSenderId: "746491018918",
-  appId: "1:746491018918:web:6603fcde03e82a10607e67",
+  appId: "1:746491018918:web:6603fcde03e82a10607e67"
 };
+// Inicializar Firebase
+firebase.initializeApp(config);
 
-let firebaseCache;
-
-export const getFirebase = () => {
-  if (firebaseCache) {
-    return firebaseCache;
-  }
-
-  firebase.initializeApp(config);
-  firebaseCache = firebase;
-  return firebase;
-};
+export default firebase;

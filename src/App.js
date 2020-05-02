@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+// import axios from 'axios'
+import firebase from "./firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Container } from "react-bootstrap";
-import {useFirebaseApp} from 'reactfire';
 import Swal from "sweetalert2";
 import Header from "./components/Header";
 import PetsList from "./components/PetsList";
@@ -17,24 +17,19 @@ import {
   faPencilAlt,
   faPlusSquare,
   faPlusCircle,
+  faCameraRetro
 } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle);
+library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle, faCameraRetro);
 
 const App = () => {
-  const firebase = useFirebaseApp();
-  console.log(firebase);
-
   const [pets, setPets] = useState([]);
-
   useEffect(() => {
-    const getAll = () => {
-      axios
-        .get("/pets.json")
-        .then((res) => {
-          setPets(res.data);
-        })
+    const fetchData = async () => {
+      const db = firebase.firestore();
+      const data = await db.collection("pets").get();
+      setPets(data.docs.map((doc) => ({...doc.data(), 'id': doc.id})));
     };
-    getAll();
+    fetchData();
   }, []);
 
   const addPetHandler = (pet) => {

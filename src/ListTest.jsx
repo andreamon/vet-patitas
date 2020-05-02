@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getPetAction } from "./redux/index";
+import {getFirebase} from './firebase'
 import { Container, Row, Button, Table, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { v4 as uuidv4 } from "uuid";
