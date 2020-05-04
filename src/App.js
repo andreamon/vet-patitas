@@ -23,6 +23,7 @@ library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle, faCameraRe
 
 const App = () => {
   const [pets, setPets] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const db = firebase.firestore();
@@ -32,20 +33,22 @@ const App = () => {
     fetchData();
   }, []);
 
-  const addPetHandler = (pet) => {
+  const addPetHandler = (pet,image) => {
     //Agregar una nueva mascota
     pet.id = uuidv4();
-    pet.photo = "/img/"+ pet.file[0].name;
+    pet.photo = "/img/" + image;
+    const db = firebase.firestore();
+    db.collection("pets").add(pet);
     setPets([...pets, pet]);
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'El paciente se ha agregado correctamente',
-      showConfirmButton: false,
-      timer: 2000
-    })
-    console.log(pets);
+    // Swal.fire({
+    //   position: 'center',
+    //   icon: 'success',
+    //   title: 'El paciente se ha agregado correctamente',
+    //   showConfirmButton: false,
+    //   timer: 2000
+    // })
   };
+  console.log(pets);
 
   const deletePetHandler = (id) => {
     //Eliminar una mascota

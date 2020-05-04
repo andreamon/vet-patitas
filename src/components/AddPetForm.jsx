@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -6,13 +6,17 @@ import { Link, useHistory } from "react-router-dom";
 const AddPetForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
   const history = useHistory();
+  const [image, setImg] = useState(null);
+
+  const inputImage = (event) => {
+    setImg(event.target.files[0].name)
+    // console.log(event.target.files[0].name);
+  };
 
   const savePet = (data, e) => {
-    console.log(data.file[0].name)
-    console.log(data);
-    /* props.addPetHandler(data);
+    props.addPetHandler(data, image);
     e.target.reset();
-    history.push("/"); */
+    history.push("/");
   };
 
   return (
@@ -84,7 +88,7 @@ const AddPetForm = (props) => {
             </Form.Group>
             <Form.Group controlId="inputImage">
               <Form.Label>Agregar foto</Form.Label>
-              <Form.File id="file" name="file" ref={register} label="Seleccionar imagen" data-browse="Click aquí" custom />
+              <Form.File id="file" name="file" onChange={inputImage} data-browse="Click aquí" />
             </Form.Group>
             <div className="text-right pt-3">
               <Link to="/" className="btn btn-danger mr-1">
