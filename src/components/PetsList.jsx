@@ -1,55 +1,108 @@
-import React from "react";
-import { Table, Button, Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import { Table, Button, Col, Row, Modal, Image } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 const PetsList = (props) => {
+  const [show, setShow] = useState(false);
+  const [petSelected, setPetSelected] = useState({});
+
+  const handleClose = () => setShow(false);
+
+  const handleShowImage = (pet) => {
+    setShow(true);
+    setPetSelected(pet);
+  };
+
   return (
-    <>
     <Row className="justify-content-center">
-    <Col md={10}>
-    <div className="py-3">
-      <h3><strong>REGISTRO DE MASCOTAS</strong></h3><hr />
-      {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Agregar mascota">
-        <FontAwesomeIcon icon="plus-square" style={{ color: 'white' }} size="lg"/>
-      </Link> */}
-    </div>
-    <Table striped hover responsive="sm" size="sm" >
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Especie / Tipo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.pets.length > 0 ? (
-          props.pets.map((pet) => (
-            <tr key={pet.id}>
-              <td>{pet.name}</td>
-              <td>{pet.age}</td>
-              <td>{pet.type}</td>
-              <td>
-                <Link to={`/editPet/${pet.id}`} className="btn btn-link" style={{margin:'4px'}} data-toggle="tooltip" title="Editar">
-                  <FontAwesomeIcon icon="pencil-alt" style={{ color: '#1982FF' }}/>
-                </Link>
-                <Button variant="link" className="m-1" onClick={()=>{props.deletePetHandler(pet.id)}} data-toggle="tooltip" title="Eliminar">
-                  <FontAwesomeIcon icon="trash-alt" style={{ color: '#EB0A02' }}/>
-                </Button>
-              </td>
+      <Col md={8}>
+        <div className="py-3">
+          <h3>
+            <strong>REGISTRO DE MASCOTAS</strong>
+          </h3>
+          <hr />
+          {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Agregar mascota">
+          <FontAwesomeIcon icon="plus-square" style={{ color: 'white' }} size="lg"/>
+          </Link> */}
+        </div>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+          <Modal.Title>Foto de {petSelected.name}</Modal.Title></Modal.Header>
+          <Modal.Body className="text-center">
+            <Image src={petSelected.photo} width="400px" rounded />
+          </Modal.Body>
+        </Modal>
+        <Table striped hover responsive="sm" size="sm">
+          <thead className="text-center">
+            <tr>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Especie / Tipo</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
+              <th>#</th>
             </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan={4}>Aún no hay mascotas registradas</td>
-          </tr>
-        )}
-      </tbody>
-    </Table>
-    </Col>
+          </thead>
+          <tbody className="text-center">
+            {props.pets.length > 0 ? (
+              props.pets.map((pet) => (
+                <tr key={pet.id}>
+                  <td>{pet.name}</td>
+                  <td>{pet.age}</td>
+                  <td>{pet.type}</td>
+                  <td>
+                    <Button variant="link" onClick={() => handleShowImage(pet)} data-toggle="tooltip" title="Ver foto">
+                      <FontAwesomeIcon
+                        icon="camera-retro"
+                        style={{ color: "#1982FF" }}
+                      />
+                    </Button>
+                  </td>
+                  <td>
+                  <Link
+                      to={`/editPet/${pet.id}`}
+                      className="btn btn-link"
+                      
+                      data-toggle="tooltip"
+                      title="Editar"
+                    >
+                      <FontAwesomeIcon
+                        icon="pencil-alt"
+                        style={{ color: "#1982FF" }}
+                      />
+                    </Link>
+                    <Button
+                      variant="link"
+                      
+                      onClick={() => {
+                        props.deletePetHandler(pet.id);
+                      }}
+                      data-toggle="tooltip"
+                      title="Eliminar"
+                    >
+                      <FontAwesomeIcon
+                        icon="trash-alt"
+                        style={{ color: "#EB0A02" }}
+                      />
+                    </Button>
+                  </td>
+                  <td style={{ padding: "4px" }} className="text-right">
+                    <Link to={`/detail/${pet.id}`} className="btn btn-link align-right">
+                      Ver detalles
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4}>Aún no hay mascotas registradas</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+      </Col>
     </Row>
-    </>
   );
 };
 

@@ -1,0 +1,6 @@
+[
+  { "id": "1", "name": "Nina", "age": "6 años", "type": "Felino", "photo":"/img/nina.jpg" },
+  { "id": "2", "name": "Negrunildo", "age": "2 años", "type": "Canino", "photo":"/img/negrito.jpg" },
+  { "id": "3", "name": "Michitina", "age": "4 años", "type": "Felino", "photo":"/img/michita.jpg" },
+  { "id": "4", "name": "Pancho", "age": "3 años", "type": "Felino", "photo":"/img/pancho.jpg" }
+]
