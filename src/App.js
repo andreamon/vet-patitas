@@ -17,9 +17,10 @@ import {
   faPencilAlt,
   faPlusSquare,
   faPlusCircle,
-  faCameraRetro
+  faCameraRetro,
+  faExclamationCircle
 } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle, faCameraRetro);
+library.add(fab, faTrashAlt, faPencilAlt, faPlusSquare, faPlusCircle, faCameraRetro, faExclamationCircle);
 
 const App = () => {
   const [pets, setPets] = useState([]);
@@ -40,13 +41,13 @@ const App = () => {
     const db = firebase.firestore();
     db.collection("pets").add(pet);
     setPets([...pets, pet]);
-    // Swal.fire({
-    //   position: 'center',
-    //   icon: 'success',
-    //   title: 'El paciente se ha agregado correctamente',
-    //   showConfirmButton: false,
-    //   timer: 2000
-    // })
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'El paciente se ha agregado correctamente',
+      showConfirmButton: false,
+      timer: 5000
+    })
   };
   console.log(pets);
 

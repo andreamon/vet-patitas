@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddPetForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
@@ -37,11 +38,11 @@ const AddPetForm = (props) => {
                 ref={register({
                   required: {
                     value: true,
-                    message: "Su mascota no tiene nombre",
+                    message: <div><FontAwesomeIcon icon="exclamation-circle" size="lg"/> &nbsp; Su mascota no tiene nombre </div>,
                   },
                 })}
               />
-              <Form.Text className="text-danger mb-3">
+              <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.name?.message}</strong>
               </Form.Text>
             </Form.Group>
@@ -54,11 +55,11 @@ const AddPetForm = (props) => {
                 ref={register({
                   required: {
                     value: true,
-                    message: "Debe ingresar la edad del animal",
+                    message: <div><FontAwesomeIcon icon="exclamation-circle" size="lg"/> &nbsp; Debe ingresar la edad del animal </div>,
                   },
                 })}
               />
-              <Form.Text className="text-danger mb-3">
+              <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.age?.message}</strong>
               </Form.Text>
             </Form.Group>
@@ -70,7 +71,7 @@ const AddPetForm = (props) => {
                 ref={register({
                   required: {
                     value: true,
-                    message: "Debe seleccionar una especie",
+                    message: <div><FontAwesomeIcon icon="exclamation-circle" size="lg"/> &nbsp; Debe seleccionar una especie </div>,
                   },
                 })}
               >
@@ -82,7 +83,7 @@ const AddPetForm = (props) => {
                 <option label="Ave" value="Ave" />
                 <option label="Otro" value="Otro" />
               </Form.Control>
-              <Form.Text className="text-danger mb-3">
+              <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.type?.message}</strong>
               </Form.Text>
             </Form.Group>
