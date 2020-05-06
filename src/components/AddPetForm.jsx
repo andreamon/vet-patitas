@@ -10,7 +10,9 @@ const AddPetForm = (props) => {
   const [image, setImg] = useState(null);
 
   const inputImage = (event) => {
-    setImg(event.target.files[0].name)
+    if(event.target.files[0]){
+      setImg(event.target.files[0])
+    }
     // console.log(event.target.files[0].name);
   };
 
@@ -18,6 +20,8 @@ const AddPetForm = (props) => {
     props.addPetHandler(data, image);
     e.target.reset();
     history.push("/");
+    console.log(data);
+    console.log(image);
   };
 
   return (
@@ -89,7 +93,7 @@ const AddPetForm = (props) => {
             </Form.Group>
             <Form.Group controlId="inputImage">
               <Form.Label>Agregar foto</Form.Label>
-              <Form.File id="file" name="file" onChange={inputImage} data-browse="Click aquí" />
+              <Form.File id="file" name="file" onChange={inputImage} />
             </Form.Group>
             <div className="text-right pt-3">
               <Link to="/" className="btn btn-danger mr-1">

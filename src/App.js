@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import axios from 'axios'
 import firebase from "./firebase";
+import {storage} from './firebase';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { Container } from "react-bootstrap";
@@ -35,21 +35,38 @@ const App = () => {
   }, []);
 
   const addPetHandler = (pet,image) => {
+    const uploadImage = storage.ref(`images/${image.name}`).put(image);
+    uploadImage.on(
+      "state_changed",
+      snapshot =>{},
+      error =>{
+        console.log(error)
+      },
+      ()=>{
+        storage
+        .ref("images")
+        .child(image.name)
+        .getDownloadURL()
+        .then(url =>{
+          console.log(url)
+          pet.id = uuidv4();
+          pet.photo = url;
+          const db = firebase.firestore();
+          db.collection("pets").add(pet);
+          setPets([...pets, pet]);
+        })
+      }
+    )
     //Agregar una nueva mascota
-    pet.id = uuidv4();
-    pet.photo = "/img/" + image;
-    const db = firebase.firestore();
-    db.collection("pets").add(pet);
-    setPets([...pets, pet]);
     Swal.fire({
       position: 'center',
       icon: 'success',
       title: 'El paciente se ha agregado correctamente',
       showConfirmButton: false,
-      timer: 5000
+      timer: 4000
     })
   };
-  console.log(pets);
+  // console.log(pets);
 
   const deletePetHandler = (id) => {
     //Eliminar una mascota
