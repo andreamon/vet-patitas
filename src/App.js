@@ -32,9 +32,9 @@ const App = () => {
       setPets(data.docs.map((doc) => ({...doc.data(), 'id': doc.id})));
     };
     fetchData();
-  }, []);
+  }, [pets]);
 
-  const addPetHandler = (pet,image) => {
+  const addPetHandler = (pet,image) => {     //Agregar una nueva mascota
     const uploadImage = storage.ref(`images/${image.name}`).put(image);
     uploadImage.on(
       "state_changed",
@@ -57,7 +57,6 @@ const App = () => {
         })
       }
     )
-    //Agregar una nueva mascota
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -66,10 +65,8 @@ const App = () => {
       timer: 4000
     })
   };
-  // console.log(pets);
 
-  const deletePetHandler = (id) => {
-    //Eliminar una mascota
+  const deletePetHandler = (id) => {     //Eliminar una mascota
     Swal.fire({
       title: "Seguro que desea eliminar el paciente?",
       text: "Esta acción no podrá deshacerse",
@@ -82,8 +79,8 @@ const App = () => {
     }).then((result) => {
       if (result.value) {
         Swal.fire("Eliminado", "El paciente ha sido eliminado.", "success");
-        const filterPet = pets.filter((el) => el.id !== id);
-        setPets(filterPet);
+        const db = firebase.firestore();
+        db.collection('pets').doc(id).delete();
       }
     });
   };

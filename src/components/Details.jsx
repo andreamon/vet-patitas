@@ -33,10 +33,6 @@ const Detail = (props) => {
                   </Col>
                 </Row>
               </Card>
-
-              {/* <div style={{ marginTop: "3rem" }}>
-                    <h4>Detalles del paciente {petFind.name}</h4>
-                </div> */}
             </Tab>
             <Tab eventKey="historial" title="Historia clínica">
               <div style={{ marginTop: "3rem" }}>

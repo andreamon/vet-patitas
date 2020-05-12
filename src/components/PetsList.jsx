@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Table, Button, Col, Row, Modal, Image } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Col,
+  Row,
+  Modal,
+  Image,
+  Spinner,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -22,13 +30,11 @@ const PetsList = (props) => {
             <strong>REGISTRO DE MASCOTAS</strong>
           </h3>
           <hr />
-          {/* <Link to="/addPet" className="btn btn-link" data-toggle="tooltip" title="Agregar mascota">
-          <FontAwesomeIcon icon="plus-square" style={{ color: 'white' }} size="lg"/>
-          </Link> */}
         </div>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-          <Modal.Title>Foto de {petSelected.name}</Modal.Title></Modal.Header>
+            <Modal.Title>Foto de {petSelected.name}</Modal.Title>
+          </Modal.Header>
           <Modal.Body className="text-center">
             <Image src={petSelected.photo} width="400px" rounded />
           </Modal.Body>
@@ -52,7 +58,12 @@ const PetsList = (props) => {
                   <td>{pet.age}</td>
                   <td>{pet.type}</td>
                   <td>
-                    <Button variant="link" onClick={() => handleShowImage(pet)} data-toggle="tooltip" title="Ver foto">
+                    <Button
+                      variant="link"
+                      onClick={() => handleShowImage(pet)}
+                      data-toggle="tooltip"
+                      title="Ver foto"
+                    >
                       <FontAwesomeIcon
                         icon="camera-retro"
                         style={{ color: "#1982FF" }}
@@ -60,10 +71,9 @@ const PetsList = (props) => {
                     </Button>
                   </td>
                   <td>
-                  <Link
+                    <Link
                       to={`/editPet/${pet.id}`}
                       className="btn btn-link"
-                      
                       data-toggle="tooltip"
                       title="Editar"
                     >
@@ -74,7 +84,6 @@ const PetsList = (props) => {
                     </Link>
                     <Button
                       variant="link"
-                      
                       onClick={() => {
                         props.deletePetHandler(pet.id);
                       }}
@@ -88,7 +97,10 @@ const PetsList = (props) => {
                     </Button>
                   </td>
                   <td style={{ padding: "4px" }} className="text-right">
-                    <Link to={`/detail/${pet.id}`} className="btn btn-link align-right">
+                    <Link
+                      to={`/detail/${pet.id}`}
+                      className="btn btn-link align-right"
+                    >
                       Ver detalles
                     </Link>
                   </td>
@@ -96,7 +108,13 @@ const PetsList = (props) => {
               ))
             ) : (
               <tr>
-                <td colSpan={4}>Aún no hay mascotas registradas</td>
+                <td colSpan={6}>
+                  <Spinner animation="border" role="status">
+                    <span className="sr-only">
+                      Aún no hay mascotas registradas...
+                    </span>
+                  </Spinner>
+                </td>
               </tr>
             )}
           </tbody>

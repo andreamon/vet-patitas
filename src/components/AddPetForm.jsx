@@ -13,15 +13,12 @@ const AddPetForm = (props) => {
     if(event.target.files[0]){
       setImg(event.target.files[0])
     }
-    // console.log(event.target.files[0].name);
   };
 
   const savePet = (data, e) => {
     props.addPetHandler(data, image);
     e.target.reset();
     history.push("/");
-    console.log(data);
-    console.log(image);
   };
 
   return (
