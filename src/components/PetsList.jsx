@@ -39,7 +39,7 @@ const PetsList = (props) => {
             <Image src={petSelected.photo} width="400px" rounded />
           </Modal.Body>
         </Modal>
-        <Table striped hover responsive="sm" size="sm">
+        <Table hover bordered responsive="sm" size="sm">
           <thead className="text-center">
             <tr>
               <th>Nombre</th>
