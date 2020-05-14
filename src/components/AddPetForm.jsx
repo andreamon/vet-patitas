@@ -1,9 +1,6 @@
 import React, {useState} from "react";
 import { useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import Calendar from 'react-calendar';
-// import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +9,7 @@ const AddPetForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
   const history = useHistory();
   const [image, setImg] = useState(null);
-  const [date, setDate] = useState(new Date());
+  
 
   const inputImage = (event) => {
     if(event.target.files[0]){
@@ -21,12 +18,9 @@ const AddPetForm = (props) => {
   };
 
   const savePet = (data, e) => {
-    console.log(data);
-    
-    console.log(`Fecha seleccionada ${date}`);
-    // props.addPetHandler(data, image);
-    // e.target.reset();
-    // history.push("/");
+    props.addPetHandler(data, image);
+    e.target.reset();
+    history.push("/");
   };
 
   return (
@@ -56,20 +50,20 @@ const AddPetForm = (props) => {
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="inputAge">
-              <Form.Label>Fecha de nacimiento</Form.Label><br />
-              {/* <Calendar onChange={date => setDate(date)} value={date} maxDate={new Date()}/> */}
-              <DatePicker
-              name="date"
-              dateFormat="dd/MM/yyyy"
-              selected={date}
-              onChange={date => {
-                setDate(date);
-                console.log(date)}}
-              maxDate={new Date()}
-              inline />
-              
+              <Form.Label>Edad</Form.Label><br />
+              <Form.Control
+                type="text"
+                name="age"
+                placeholder="Ingrese aquí la edad de la mascota"
+                ref={register({
+                  required: {
+                    value: true,
+                    message: <div><FontAwesomeIcon icon="exclamation-circle" size="lg"/> &nbsp; Debe ingresar la edad del animal </div>,
+                  },
+                })}
+              />
               <Form.Text className="text-danger mb-3 pt-1">
-                <strong>{errors?.date?.message}</strong>
+                <strong>{errors?.age?.message}</strong>
               </Form.Text>
             </Form.Group>
             <Form.Group controlId="inputType">
