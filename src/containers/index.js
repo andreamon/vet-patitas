@@ -1,0 +1,9 @@
+export {default as Layout} from "../components/Layout";
+export {default as Login} from "../components/Login";
+export {default as Header} from "../components/Header";
+export {default as PetsList} from "../components/Home";
+export {default as AdoptedList} from "../components/AdoptedsList";
+export {default as AddPetForm} from "../components/AddPetForm";
+export {default as EditPetForm} from "../components/EditPetForm";
+export {default as Detail} from "../components/Details";
+export {default as NotFound} from "../components/NotFound";

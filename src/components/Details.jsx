@@ -1,17 +1,20 @@
 import React from "react";
+import Load from "./Load";
 import { Row, Col, Tabs, Tab, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 const Detail = (props) => {
   const { id } = useParams();
   const petFind = props.sendPetId(id);
+  
   return (
     <Row className="justify-content-center">
       <Col md={9}>
         <div className="py-3">
           <Tabs defaultActiveKey="details" id="details-tab">
             <Tab eventKey="details" title="Detalles">
-              <Card id="detail-card" style={{ marginTop: "3rem" }}>
+              {petFind ? (
+              <Card style={{ marginTop: "3rem" }}>
                 <Row>
                   <Col md={9}>
                     <Card.Body>
@@ -33,6 +36,9 @@ const Detail = (props) => {
                   </Col>
                 </Row>
               </Card>
+              ) : (
+                <Load />
+              )}
             </Tab>
             <Tab eventKey="historial" title="Historia clínica">
               <div style={{ marginTop: "3rem" }}>

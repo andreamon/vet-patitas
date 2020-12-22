@@ -10,7 +10,7 @@ const EditPetForm = (props) => {
 
   const { register, errors, handleSubmit, setValue } = useForm({defaultValues: petFind});
 
-  setValue("id", petFind.id);
+  // setValue("id", petFind.id);
   setValue("name", petFind.name);
   setValue("age", petFind.age);
   setValue("type", petFind.type);
