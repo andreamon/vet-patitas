@@ -1,41 +1,42 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import useGetPets from "../hooks/useGetPets";
 import Load from "./Load";
 import { Row, Col, Tabs, Tab, Card } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
-const Detail = (props) => {
+const Detail = () => {
   const { id } = useParams();
-  const petFind = props.sendPetId(id);
-  
+  let pet = useGetPets().find((pet) => pet.id === id);
+
   return (
     <Row className="justify-content-center">
       <Col md={9}>
         <div className="py-3">
           <Tabs defaultActiveKey="details" id="details-tab">
             <Tab eventKey="details" title="Detalles">
-              {petFind ? (
-              <Card style={{ marginTop: "3rem" }}>
-                <Row>
-                  <Col md={9}>
-                    <Card.Body>
-                      <Card.Title>
-                        Detalles del paciente {petFind.name}
-                      </Card.Title>
-                      <Card.Subtitle className="mb-2 text-muted">
-                        {petFind.type}
-                      </Card.Subtitle>
-                      <Card.Text>Edad: {petFind.age}</Card.Text>
-                    </Card.Body>
-                  </Col>
-                  <Col md={3}>
-                    <Card.Img
-                      style={{ width: "12rem", padding: "1rem" }}
-                      className="img-fluid"
-                      src={petFind.photo}
-                    />
-                  </Col>
-                </Row>
-              </Card>
+              {pet ? (
+                <Card style={{ marginTop: "3rem" }}>
+                  <Row>
+                    <Col md={9}>
+                      <Card.Body>
+                        <Card.Title>
+                          Detalles del paciente {pet.name}
+                        </Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">
+                          {pet.type}
+                        </Card.Subtitle>
+                        <Card.Text>Edad: {pet.age}</Card.Text>
+                      </Card.Body>
+                    </Col>
+                    <Col md={3}>
+                      <Card.Img
+                        style={{ width: "12rem", padding: "1rem" }}
+                        className="img-fluid"
+                        src={pet.photo}
+                      />
+                    </Col>
+                  </Row>
+                </Card>
               ) : (
                 <Load />
               )}

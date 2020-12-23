@@ -29,6 +29,7 @@ import {
   faCameraRetro,
   faExclamationCircle,
   faHeart,
+  faPaw
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -39,7 +40,7 @@ library.add(
   faPlusCircle,
   faCameraRetro,
   faExclamationCircle,
-  faHeart
+  faHeart, faPaw
 );
 
 const App = () => {

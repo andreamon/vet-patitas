@@ -14,16 +14,6 @@ const useGetPets = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const db = firebase.firestore();
-  //     const data = await db.collection("pets").get();
-  //     setPets(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //   };
-  //   fetchData();
-  //   console.log('fetch pets');
-  // }, []);
-
   return pets;
 };
 

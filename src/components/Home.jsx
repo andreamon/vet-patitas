@@ -1,15 +1,11 @@
 import React from "react";
-import Load from "./Load";
+import { Link } from "react-router-dom";
 import useGetPets from "../hooks/useGetPets";
-// import initialState from "../initialState";
+import Load from "./Load";
 import { Card, Col, Row } from "react-bootstrap";
 
 const Home = () => {
-  const pets = useGetPets();
-  //   const { pets } = initialState;
-  // let pets = initialState.pets;
-  console.log(pets);
-  //   let petsAvailable = pets.filter((pet) => pet.adopted === false);
+  let pets = useGetPets().filter((pet) => pet.adopted === false);
   return (
     <>
       <Row className="justify-content-center">
@@ -22,40 +18,31 @@ const Home = () => {
             </div>
             <Row>
               {pets.map((pet) => (
-                // <Col key={pet.id}>
-                  <Col style={{ display: "flex", flexWrap: "wrap" }}>
-                  <Card style={{ width: "15rem" }} className="adopted-card" key={pet.id}>
+                <Col style={{ display: "flex", flexWrap: "wrap" }} key={pet.id}>
+                  <Card style={{ width: "15rem" }} className="card-pets">
                     <Card.Img
                       variant="top"
                       src={pet.photo}
                       className="card-img"
                     />
-                    <Card.Body>
-                      <Card.Title style={{textAlign:"center", fontWeight:"bold"}}>{pet.name}</Card.Title>
-                      <Card.Text>
-                        Me llamo {pet.name} y tengo {pet.age}.
-                      </Card.Text>
+                    <Card.Body
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Card.Title style={{ fontWeight: "bold" }}>
+                        {pet.name}
+                      </Card.Title>
+                      <Link to={`/detail/${pet.id}`} className="btn btn-link">
+                        Detalles <i className="fas fa-paw" />
+                      </Link>
                     </Card.Body>
                   </Card>
                 </Col>
               ))}
             </Row>
-            {/* <Table hover bordered responsive="sm" size="sm" variant="light">
-              <thead className="text-center">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Especie</th>
-                </tr>
-              </thead>
-              <tbody className="text-center">
-                {pets.map((pet) => (
-                  <tr key={pet.id}>
-                    <td>{pet.name}</td>
-                    <td>{pet.type}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table> */}
           </Col>
         ) : (
           <Load />

@@ -1,28 +1,32 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {
-  Layout,
-  PetsList,
-  AdoptedList,
-  AddPetForm,
-  EditPetForm,
-  Detail,
-  NotFound,
-} from "../containers";
+import * as Page from "../containers";
 
 const App = () => {
   return (
     <Router>
-      <Layout>
+      <Page.Layout>
         <Switch>
-          <Route exact path="/" component={PetsList} />
-          <Route exact path="/adopteds" component={AdoptedList} />
-          <Route exact path="/add" component={AddPetForm} />
-          <Route exact path="/edit" component={EditPetForm} />
-          <Route exact path="/detail" component={Detail} />
-          <Route component={NotFound} />
+          <Route exact path="/">
+            <Page.PetsList />
+          </Route>
+          <Route exact path="/adopteds">
+            <Page.AdoptedList />
+          </Route>
+          <Route exact path="/add">
+            <Page.AddPetForm />
+          </Route>
+          <Route exact path="/edit">
+            <Page.EditPetForm />
+          </Route>
+          <Route exact path="/detail/:id">
+            <Page.Detail />
+          </Route>
+          <Route>
+            <Page.NotFound />
+          </Route>
         </Switch>
-      </Layout>
+      </Page.Layout>
     </Router>
   );
 };
