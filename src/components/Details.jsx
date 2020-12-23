@@ -30,9 +30,9 @@ const Detail = () => {
                     </Col>
                     <Col md={3}>
                       <Card.Img
-                        style={{ width: "12rem", padding: "1rem" }}
+                        
                         className="img-fluid"
-                        src={pet.photo}
+                        src={`${pet.photo}/100px180`}
                       />
                     </Col>
                   </Row>

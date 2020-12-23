@@ -5,7 +5,8 @@ import Load from "./Load";
 import { Card, Col, Row } from "react-bootstrap";
 
 const Home = () => {
-  let pets = useGetPets().filter((pet) => pet.adopted === false);
+  // let pets = useGetPets().filter((pet) => pet.adopted === false);
+  let pets = useGetPets();
   return (
     <>
       <Row className="justify-content-center">
@@ -22,7 +23,7 @@ const Home = () => {
                   <Card style={{ width: "15rem" }} className="card-pets">
                     <Card.Img
                       variant="top"
-                      src={pet.photo}
+                      src={`${pet.photo}/100px180`}
                       className="card-img"
                     />
                     <Card.Body
