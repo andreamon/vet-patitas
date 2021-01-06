@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 // import useGetPets from './hooks/useGetPets';
-import ThemeContext from "./context/ThemeContext";
 import firebase, { db } from "./firebase";
 import { storage } from "./firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -47,7 +46,6 @@ const App = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     db.collection("pets").onSnapshot((querySnapshot) => {

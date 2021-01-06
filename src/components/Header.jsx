@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
@@ -39,10 +39,15 @@ const Header = () => {
           >
             Adoptados
           </Link>
-          <Button variant="link">
-            <i class="fas fa-shopping-cart" /> 
-            {cart.length > 0 && <span className="cart-header">{cart.length}</span>}
-          </Button>
+          <Link
+            to="/checkout"
+            style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
+          >
+            <i className="fas fa-shopping-cart" />
+            {cart.length > 0 && (
+              <span className="cart-header">{cart.length}</span>
+            )}
+          </Link>
         </Nav>
 
         {/* <Form inline>

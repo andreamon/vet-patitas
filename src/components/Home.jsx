@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-
 import Load from "./Load";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import AppContext from "../context/AppContext";
