@@ -12,7 +12,7 @@ const App = () => {
         <Page.Layout>
           <Switch>
             <Route exact path="/">
-              <Page.PetsList />
+              <Page.Home />
             </Route>
             <Route exact path="/adopteds">
               <Page.AdoptedList />
@@ -25,6 +25,18 @@ const App = () => {
             </Route>
             <Route exact path="/detail/:id">
               <Page.Detail />
+            </Route>
+            <Route exact path="/checkout">
+              <Page.Checkout />
+            </Route>
+            <Route exact path="/info">
+              <Page.Information />
+            </Route>
+            <Route exact path="/payment">
+              <Page.Payment />
+            </Route>
+            <Route exact path="/success">
+              <Page.Success />
             </Route>
             <Route>
               <Page.NotFound />
