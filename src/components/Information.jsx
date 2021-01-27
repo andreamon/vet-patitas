@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import AppContext from "../context/AppContext";
 
 const Information = () => {
@@ -33,17 +33,17 @@ const Information = () => {
                 name="name"
                 placeholder="Nombre y Apellido"
                 size="sm"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: (
-                      <div>
-                        <i className="fas fa-exclamation-circle" />
-                        &nbsp; Ingresar nombre{" "}
-                      </div>
-                    ),
-                  },
-                })}
+                // ref={register({
+                //   required: {
+                //     value: true,
+                //     message: (
+                //       <div>
+                //         <i className="fas fa-exclamation-circle" />
+                //         &nbsp; Ingresar nombre{" "}
+                //       </div>
+                //     ),
+                //   },
+                // })}
               />
               <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.name?.message}</strong>
@@ -55,17 +55,17 @@ const Information = () => {
                 name="contact"
                 placeholder="Teléfono de contacto"
                 size="sm"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: (
-                      <div>
-                        <i className="fas fa-exclamation-circle" />
-                        &nbsp; Debe completar este campo{" "}
-                      </div>
-                    ),
-                  },
-                })}
+                // ref={register({
+                //   required: {
+                //     value: true,
+                //     message: (
+                //       <div>
+                //         <i className="fas fa-exclamation-circle" />
+                //         &nbsp; Debe completar este campo{" "}
+                //       </div>
+                //     ),
+                //   },
+                // })}
               />
               <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.contact?.message}</strong>
@@ -77,44 +77,68 @@ const Information = () => {
                 name="email"
                 placeholder="Email"
                 size="sm"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: (
-                      <div>
-                        <i className="fas fa-exclamation-circle" />
-                        &nbsp; Ingresar email{" "}
-                      </div>
-                    ),
-                  },
-                })}
+                // ref={register({
+                //   required: {
+                //     value: true,
+                //     message: (
+                //       <div>
+                //         <i className="fas fa-exclamation-circle" />
+                //         &nbsp; Ingresar email{" "}
+                //       </div>
+                //     ),
+                //   },
+                // })}
               />
               <Form.Text className="text-danger mb-3 pt-1">
                 <strong>{errors?.email?.message}</strong>
               </Form.Text>
             </Form.Group>
-            <Form.Group controlId="inputAddress">
-              <Form.Control
-                type="text"
-                name="address"
-                placeholder="Calle y número"
-                size="sm"
-                ref={register({
-                  required: {
-                    value: true,
-                    message: (
-                      <div>
-                        <i className="fas fa-exclamation-circle" />
-                        &nbsp; Ingresar una dirección{" "}
-                      </div>
-                    ),
-                  },
-                })}
-              />
-              <Form.Text className="text-danger mb-3 pt-1">
-                <strong>{errors?.address?.message}</strong>
-              </Form.Text>
-            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="inputAddress">
+                <Form.Control
+                  type="text"
+                  name="address"
+                  placeholder="Calle"
+                  size="sm"
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: (
+                        <div>
+                          <i className="fas fa-exclamation-circle" />
+                          &nbsp; Ingresar una dirección{" "}
+                        </div>
+                      ),
+                    },
+                  })}
+                />
+                <Form.Text className="text-danger mb-3 pt-1">
+                  <strong>{errors?.address?.message}</strong>
+                </Form.Text>
+              </Form.Group>
+              <Form.Group as={Col} controlId="inputNumber">
+                <Form.Control
+                  type="text"
+                  name="number"
+                  placeholder="Altura"
+                  size="sm"
+                  ref={register({
+                    required: {
+                      value: true,
+                      message: (
+                        <div>
+                          <i className="fas fa-exclamation-circle" />
+                          &nbsp; Campo obligatorio{" "}
+                        </div>
+                      ),
+                    },
+                  })}
+                />
+                <Form.Text className="text-danger mb-3 pt-1">
+                  <strong>{errors?.number?.message}</strong>
+                </Form.Text>
+              </Form.Group>
+            </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId="inputCity">
                 <Form.Control
@@ -162,12 +186,12 @@ const Information = () => {
               </Form.Group>
             </Form.Row>
             <div className="text-right">
-              <Link to="/checkout" className="btn btn-danger btn-sm mr-1">
+              <Link to="/checkout" className="btn btn-back mr-1">
                 Volver
               </Link>
-              <Button variant="success" type="submit" size="sm">
+              <button className="btn btn-confirm" type="submit">
                 Confirmar compra
-              </Button>
+              </button>
             </div>
           </Form>
         </Col>

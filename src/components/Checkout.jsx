@@ -57,7 +57,7 @@ const Checkout = () => {
         <div className="m-3">
           <p>{`Precio total $${handleSumAll()}`}</p>
           <div className="text-left pt-3">
-            <Link to="/info" className="btn btn-success btn-sm mr-1">
+            <Link to="/info" className="btn btn-pink btn-sm mr-1">
               Continuar pedido
             </Link>
           </div>

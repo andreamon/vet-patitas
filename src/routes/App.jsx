@@ -14,6 +14,9 @@ const App = () => {
             <Route exact path="/">
               <Page.Home />
             </Route>
+            <Route exact path="/products">
+              <Page.Products />
+            </Route>
             <Route exact path="/adopteds">
               <Page.AdoptedList />
             </Route>

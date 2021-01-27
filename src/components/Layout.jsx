@@ -1,13 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Header from "./Header";
-import { Container } from "react-bootstrap";
 
 const Layout = ({children}) => {
   return (
-    <Fragment>
+    <div className="container mx-auto mt-5">
       <Header />
-      <Container style={{ marginTop: "2rem" }}>{children}</Container>
-    </Fragment>
+      <div className="mt-5">{children}</div>
+    </div>
   );
 };
 export default Layout;

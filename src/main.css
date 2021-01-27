@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.btn {
+    @apply py-2 px-4 rounded;
+}
+
+.btn-pink {
+    @apply bg-pink-400 text-white text-sm;
+}
+
+.btn-pink:hover {
+    @apply bg-pink-500 text-white;
+}
+
+.btn-ok {
+    @apply py-2 px-2 rounded bg-indigo-400 text-white text-sm;
+}
+
+.btn-ok:hover {
+    @apply bg-indigo-600;
+}
+.btn-back {
+    @apply bg-yellow-300 text-white px-6 text-sm;
+}
+.btn-back:hover {
+    @apply bg-yellow-400 text-white px-6 text-sm;
+}
+.btn-confirm {
+    @apply bg-green-300 text-white text-sm;
+}
+.btn-confirm:hover{
+    @apply bg-green-400 text-white;
+}
+/* primary-color: #818CF8 */
+/* primary-color: indigo-400 
+rosa: pink-400
+amarillo: yellow-400
+verde: green-300 */
+
+@tailwind utilities;

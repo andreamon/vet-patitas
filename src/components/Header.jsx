@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
@@ -8,53 +7,69 @@ const Header = () => {
     state: { cart },
   } = useContext(AppContext);
 
+  const [openMenu, setOpenMenu] = useState(false);
+  
   return (
-    <Navbar bg="transparent" expand="lg" variant="light">
-      <Link
-        to="/"
-        style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
-      >
-        <h4>
-          <strong>Patitas Suaves Pet Store</strong>
-        </h4>
-      </Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
+    <nav className="flex justify-between items-start md:block">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="block">
+          <Link to="/">
+            <img
+              src="./img/patitas_logo.png"
+              alt="logo de patitas suaves"
+              className="w-auto md:w-full h-auto"
+            />
+          </Link>
+        </div>
+
+        <div
+          className={`${
+            openMenu ? "block text-center w-full" : "hidden"
+          } md:flex md:justify-end tracking-wide text-sm font-semibold uppercase`}
+        >
           <Link
             to="/"
-            style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
+            className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
           >
-            Inicio
+            Home
           </Link>
           <Link
-            to="/addPet"
-            style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
+            to="/products"
+            className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
           >
-            Agregar
+            Tienda
           </Link>
           <Link
-            to="/listAdopted"
-            style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
+            to="/"
+            className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
           >
-            Adoptados
+            Nosotros
           </Link>
           <Link
             to="/checkout"
-            style={{ color: "#1697E9", textDecoration: "none", padding: "8px" }}
+            className="block text-indigo-400 hover:text-indigo-600 p-2"
           >
             <i className="fas fa-shopping-cart" />
             {cart.length > 0 && (
               <span className="cart-header">{cart.length}</span>
             )}
           </Link>
-        </Nav>
-
-        {/* <Form inline>
-          <Link to="/login" className="btn btn-danger btn-sm">Cerrar Sesión</Link>
-        </Form> */}
-      </Navbar.Collapse>
-    </Navbar>
+        </div>
+      </div>
+      <div className="block md:hidden text-indigo-400 mt-8">
+        <a
+          href="#"
+          className="px-3 py-2 border-2 rounded border-indigo-400 cursor-pointer"
+          onClick={() => setOpenMenu(!openMenu)}
+        >
+          {openMenu ? (
+            <i className="fas fa-times"></i>
+          ) : (
+            <i className="fas fa-bars"></i>
+          )}
+        </a>
+      </div>
+    </nav>
   );
 };
 
