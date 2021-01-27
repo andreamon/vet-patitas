@@ -76,3 +76,7 @@ code {
   margin-top: 25px;
   font-weight: bold;
 }
+
+.naveff {
+  transition: all 0.6s ease-out;
+}

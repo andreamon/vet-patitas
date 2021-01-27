@@ -8,7 +8,7 @@ const Header = () => {
   } = useContext(AppContext);
 
   const [openMenu, setOpenMenu] = useState(false);
-  
+
   return (
     <nav className="flex justify-between items-start md:block">
       <div className="flex flex-col md:flex-row justify-between items-center">
@@ -24,7 +24,7 @@ const Header = () => {
 
         <div
           className={`${
-            openMenu ? "block text-center w-full" : "hidden"
+            openMenu ? "block text-center w-full text-lg" : "hidden"
           } md:flex md:justify-end tracking-wide text-sm font-semibold uppercase`}
         >
           <Link
@@ -59,13 +59,13 @@ const Header = () => {
       <div className="block md:hidden text-indigo-400 mt-8">
         <a
           href="#"
-          className="px-3 py-2 border-2 rounded border-indigo-400 cursor-pointer"
+          className="px-4 py-3 border-2 rounded border-indigo-400 cursor-pointer"
           onClick={() => setOpenMenu(!openMenu)}
         >
           {openMenu ? (
-            <i className="fas fa-times"></i>
+            <i className="fas fa-times" style={{ color: "#818CF8" }}></i>
           ) : (
-            <i className="fas fa-bars"></i>
+            <i className="fas fa-bars" style={{ color: "#818CF8" }}></i>
           )}
         </a>
       </div>
