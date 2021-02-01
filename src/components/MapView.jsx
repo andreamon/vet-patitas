@@ -4,18 +4,15 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { IconLocation } from "./IconLocation";
 
-function MapView({ data }) {
-  const styleMap = { width: "100%", height: "100vh" };
-  const position = {
-    lat: data.latitude,
-    lng: data.longitude,
-  };
+function MapView() {
+  const styleMap = { width: "100%", height: "70vh" };
+  
   // const position = [data.latitude, data.longitude];
-  // const position = [-27.481519, -58.790743];
+  const position = [-27.481519, -58.790743];
 
   return (
     <>
-      {position.lat ? (
+      {position ? (
         <div>
           <MapContainer
             center={position}

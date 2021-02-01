@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Map from "./MapView";
+import Map from "./MapView";
 
 const HomeWithStyle = () => {
   return (
@@ -114,9 +114,9 @@ const HomeWithStyle = () => {
           </p>
         </div>
       </div>
-      {/* <div className="mb-5">
+      <div className="mb-5">
         <Map />
-      </div> */}
+      </div>
     </div>
   );
 };

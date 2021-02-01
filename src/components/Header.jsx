@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
 const Header = () => {
@@ -13,13 +13,13 @@ const Header = () => {
     <nav className="flex justify-between items-start md:block">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="block">
-          <Link to="/">
+          <NavLink to="/">
             <img
               src="./img/patitas_logo.png"
               alt="logo de patitas suaves"
               className="w-auto md:w-full h-auto"
             />
-          </Link>
+          </NavLink>
         </div>
 
         <div
@@ -27,25 +27,28 @@ const Header = () => {
             openMenu ? "block text-center w-full text-lg" : "hidden"
           } md:flex md:justify-end tracking-wide text-sm font-semibold uppercase`}
         >
-          <Link
-            to="/"
+          <NavLink
+            to="/" exact
             className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
+            activeClassName="menu_active"
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/products"
             className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
+            activeClassName="menu_active"
           >
             Tienda
-          </Link>
-          <Link
-            to="/"
+          </NavLink>
+          <NavLink
+            to="/adopteds"
             className="block transition duration-500 ease-in-out text-indigo-400 hover:text-indigo-600 hover:no-underline transform hover:-translate-y-1 hover:scale-110 p-2"
+            activeClassName="menu_active"
           >
             Nosotros
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/checkout"
             className="block text-indigo-400 hover:text-indigo-600 p-2"
           >
@@ -53,13 +56,12 @@ const Header = () => {
             {cart.length > 0 && (
               <span className="cart-header">{cart.length}</span>
             )}
-          </Link>
+          </NavLink>
         </div>
       </div>
-      <div className="block md:hidden text-indigo-400 mt-8">
-        <a
-          href="#"
-          className="px-4 py-3 border-2 rounded border-indigo-400 cursor-pointer"
+      <div className="block md:hidden text-indigo-400 mt-8 mr-2">
+        <button
+          className="menu_burger"
           onClick={() => setOpenMenu(!openMenu)}
         >
           {openMenu ? (
@@ -67,7 +69,7 @@ const Header = () => {
           ) : (
             <i className="fas fa-bars" style={{ color: "#818CF8" }}></i>
           )}
-        </a>
+        </button>
       </div>
     </nav>
   );

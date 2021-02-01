@@ -28,22 +28,36 @@ body {
 .btn-ok:hover {
     @apply bg-indigo-600;
 }
+
 .btn-back {
     @apply bg-yellow-300 text-white px-6 text-sm;
 }
+
 .btn-back:hover {
     @apply bg-yellow-400 text-white px-6 text-sm;
 }
+
 .btn-confirm {
     @apply bg-green-300 text-white text-sm;
 }
-.btn-confirm:hover{
+
+.btn-confirm:hover {
     @apply bg-green-400 text-white;
 }
+
 /* primary-color: #818CF8 */
+
 /* primary-color: indigo-400 
 rosa: pink-400
 amarillo: yellow-400
 verde: green-300 */
+
+.menu_burger {
+    @apply px-4 py-3 border-2 rounded border-indigo-400 cursor-pointer;
+}
+
+.menu_active {
+    @apply text-white bg-indigo-400 !important;
+}
 
 @tailwind utilities;
