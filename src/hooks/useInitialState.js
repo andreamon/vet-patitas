@@ -1,8 +1,18 @@
 import { useState } from "react";
-import initialState from "../initialState";
+import initialState from "../config/initialState";
 
 const useInitialState = () => {
   const [state, setState] = useState(initialState);
+
+  const loggedIn = () => {
+    window.localStorage.setItem('MY_AUTH_APP', true);
+    setState({ ...state, isAuthenticated: true });
+  };
+
+  const logout = () => {
+    window.localStorage.removeItem('MY_AUTH_APP', true);
+    setState({ ...state, isAuthenticated: false });
+  };
 
   const addToCart = (payload) => {
     setState({
@@ -14,7 +24,9 @@ const useInitialState = () => {
   const removeToCart = (payload, indexToRemove) => {
     setState({
       ...state,
-      cart: state.cart.filter((items, indexCurrent) => indexCurrent !== indexToRemove),
+      cart: state.cart.filter(
+        (items, indexCurrent) => indexCurrent !== indexToRemove
+      ),
     });
   };
 
@@ -22,13 +34,15 @@ const useInitialState = () => {
     setState({
       ...state,
       buyer: [...state.buyer, payload],
-    })
-  }
+    });
+  };
 
   return {
     addToCart,
     removeToCart,
     addToBuyer,
+    loggedIn,
+    logout,
     state,
   };
 };

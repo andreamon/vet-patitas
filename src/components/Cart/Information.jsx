@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Row, Col } from "react-bootstrap";
-import AppContext from "../context/AppContext";
+import AppContext from "../../context/AppContext";
 
 const Information = () => {
   const { register, errors, handleSubmit } = useForm();

@@ -45,6 +45,10 @@ body {
     @apply bg-green-400 text-white;
 }
 
+.alert {
+    @apply py-2 text-xs text-red-500 font-bold;
+}
+
 /* primary-color: #818CF8 */
 
 /* primary-color: indigo-400 

@@ -1,5 +1,5 @@
 import React from "react";
-import Loading from './Load';
+import Loading from '../Spinner/Load';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { IconLocation } from "./IconLocation";

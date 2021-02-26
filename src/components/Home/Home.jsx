@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Map from "./MapView";
+import {SHOP} from '../../config/routes';
+import Map from "../Map/MapView";
 
-const HomeWithStyle = () => {
+const Home = () => {
   return (
     <div className="container mx-auto pt-5">
       <div className="flex flex-col-reverse md:flex-row md:justify-evenly text-center">
@@ -15,7 +16,7 @@ const HomeWithStyle = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit....
           </p>
           <Link
-            to="/products"
+            to={SHOP}
             className="mt-3 px-5 py-2 bg-indigo-400 text-white text-xs md:text-sm font-bold rounded hover:bg-indigo-500 self-center hover:no-underline hover:z-40"
           >
             Nuestros productos
@@ -38,6 +39,7 @@ const HomeWithStyle = () => {
                 className="mx-auto"
                 src="./img/accesorio.jpg"
                 alt=""
+                loading="lazy"
               />
             </Link>
             <div className="mt-2 text-center md:text-left leading-relaxed">
@@ -55,6 +57,7 @@ const HomeWithStyle = () => {
                 className="mx-auto"
                 src="./img/accesorio.jpg"
                 alt=""
+                loading="lazy"
               />
             </Link>
             <div className="mt-2 text-center md:text-left leading-relaxed">
@@ -72,6 +75,7 @@ const HomeWithStyle = () => {
                 className="mx-auto"
                 src="./img/accesorio.jpg"
                 alt=""
+                loading="lazy"
               />
             </Link>
             <div className="mt-2 text-center md:text-left leading-relaxed">
@@ -89,6 +93,7 @@ const HomeWithStyle = () => {
                 className="mx-auto"
                 src="./img/accesorio.jpg"
                 alt=""
+                loading="lazy"
               />
             </Link>
             <div className="mt-2 text-center md:text-left leading-relaxed">
@@ -121,4 +126,4 @@ const HomeWithStyle = () => {
   );
 };
 
-export default HomeWithStyle;
+export default Home;

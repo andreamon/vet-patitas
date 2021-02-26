@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import AppContext from "../context/AppContext";
+import { SHOP } from "../../config/routes";
+import AppContext from "../../context/AppContext";
 import { Row, Col, Button } from "react-bootstrap";
 
 const Checkout = () => {
@@ -22,15 +23,18 @@ const Checkout = () => {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col items-center text-center">
         {cart.length > 0 ? (
-          <h4>
-            <strong>Lista de pedidos</strong>
-          </h4>
+          <p className="text-sm font-bold md:text-lg">Lista de pedidos</p>
         ) : (
-          <h6>
-            <strong>Aún no hay elementos en el carrito</strong>
-          </h6>
+          <>
+            <p className="text-sm font-bold md:text-lg">
+              Aún no hay elementos en el carrito
+            </p>
+            <Link to={SHOP} className="text-blue-500 font-semibold my-8">
+              Ir a la tienda para ver los productos
+            </Link>
+          </>
         )}
 
         {cart.map((item, i) => (

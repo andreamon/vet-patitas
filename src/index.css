@@ -23,14 +23,6 @@ code {
   border-right: transparent;
 }
 
-#login-card{
-  /* padding-top: 12px; */
-  border: transparent;
-  /* box-shadow: 0 0 1px 0 rgba(8, 11, 14, 0.06), 0 16px 16px -1px rgba(8, 11, 14, 0.1);
-  border-radius: 12px;
-  border: 1px solid #F7F8F9; */
-}
-
 .card:hover.adopted-card{
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.1);
   transform: translateY(-12px) translateZ(-1px);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db } from "../database/firebase";
 
 const useGetPets = () => {
   const [pets, setPets] = useState([]);
